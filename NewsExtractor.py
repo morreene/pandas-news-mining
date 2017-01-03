@@ -1,16 +1,19 @@
 import pandas as pd
-import datefinder
 import numpy as np
-#import itertools
+import datefinder
 import win32com.client
 import codecs
 import os
 import re
+import sqlite3 as db
+#import itertools
 
-###################################################################################################
-# Export Outlook emails to TXT files
-# Emails should be under Outlook folder "@ News" >> "To Export"
-###################################################################################################
+'''###################################################################################################
+   Export Outlook emails to TXT files
+   Emails should be under Outlook folder "@ News" >> "To Export"
+   This part can only run on office computer with outlook configration
+   It needs only run once for a set of emails (say for emails in 2015)
+###################################################################################################'''
 
 outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
 folder = outlook.Folders("Dayong.Yu@wto.org").Folders("@ Other").Folders("News").Folders("@ News 2015").Folders("tmp")
@@ -36,11 +39,20 @@ for message in messages:
     text_file.close()
 #    print(message.subject)
 
-###################################################################################################
-# Extract articles from a TXT file and convert to DF
-###################################################################################################
+'''######################################################################################
+    Extract articles from a TXT file and convert to DF
+    Extractor read and parse a TXT file.
+    Titles of news are listed on the top of email as an index. Extractor matches 
+        headings in index with each title to identify individual article.
+    There will be some articles having problems to match. Open the TXT file and correct irregular texts. Then run this process again.
+    Progress: data done: 2015,
+######################################################################################'''
 
 
+
+#################################################
+# Extractor - get data from individual txt
+#################################################
 
 def extractor(filename): 
 #    filename = 'Files2015A/2015-06-06.txt'
@@ -67,7 +79,7 @@ def extractor(filename):
     # Remove any email address
     for i in range(0, len(df_raw)):
         match = re.findall(r'[\w\.-]+@[\w\.-]+', df_raw.loc[i, 'Texts'])
-        if len(match)>0: df_raw.loc[i, 'Texts'] = df_raw.loc[i, 'Texts'].replace(match[0], '')
+        if len(match) > 0: df_raw.loc[i, 'Texts'] = df_raw.loc[i, 'Texts'].replace(match[0], '')
         
     # Remove hyperlink
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \"javascript\:void\(0\)\;\"', '')
@@ -109,10 +121,10 @@ def extractor(filename):
 
     return df, df_title
 
+# Initialize new dataframes: df and df_title
 df = pd.DataFrame()
 df_title = pd.DataFrame()
 
-#df_tmp = extractor('Files2015/file-61.txt')
 # Run extractor on all files under the directory
 # Problematic file will be identified for further investgation: likely to be irregular format
 indir = 'Files2015A/'
@@ -120,36 +132,38 @@ for root, dirs, filenames in os.walk(indir):
     for f in filenames:
         try:
             df_tmp, df_tmp_title = extractor(indir + f)
+            # Print file with less than 2 items, possible errors
             if len(df_tmp.index) < 3 : print(f + ' - ', len(df_tmp.index))
             df = df.append(df_tmp)
             df_title = df_title.append(df_tmp_title)
         except Exception as e: 
             print(f + ' - ' + str(e))
 
-##################################################################
-#   Checking with entire DF
-##################################################################
+#################################################
+#   Checking the entire DF
+#################################################
 
-#Match title table with all content to identify error docs
+# Match title table with all content to identify error docs
 # Correction will be made in the raw txt file. then run this part of the code
+# In the end, df_tocheck_problem should have 0 rows
 
-df_tmp = pd.merge(df_title[~df_title['Title'].isin(['Headlines:','Details:',
-'Headlines','HEADLINES:','TITL​ES','FULL ARTICLES','﻿HEADLINES:','Details','﻿TRADE NEWS'])], df, how='left', on=['Title','FileName'])
-df_tmp1 = df_tmp[df_tmp['Content'].isnull()]
-df_tmp_count = df_tmp.groupby('FileName').size().reset_index(name='Count')
-df_tmp1 = pd.merge(df_tmp1, df_tmp_count, on='FileName')
+df_tocheck = pd.merge(df_title[~df_title['Title'].isin(['Headlines:','Details:','Headlines','HEADLINES:',
+                           'TITLES','FULL ARTICLES','HEADLINES:','Details','TRADE NEWS'])], 
+                            df, how='left', on=['Title','FileName'])
+df_tocheck_problem = df_tocheck[df_tocheck['Content'].isnull()]
+df_tocheck_count = df_tocheck.groupby('FileName').size().reset_index(name='Count')
+df_tocheck_problem = pd.merge(df_tocheck_problem, df_tocheck_count, on='FileName')
 
 
-
-
-##################################################################
-#   Add columns
-##################################################################
+#################################################
+#   Add columns: date, agencies and language
+#################################################
 
 
 
 ## This is module to identified the dates from string
 ## Not used, use file name directly
+
 #df3 = df.copy().reset_index()
 ## Extract date from article content
 #for i in range(0, len(df3)):
@@ -164,9 +178,6 @@ df_tmp1 = pd.merge(df_tmp1, df_tmp_count, on='FileName')
 #    else:
 #        df3.loc[i, 'Date'] = np.NaN
    
-df['Date'] = df['FileName'].str[11:21]
-
-df=df.reset_index()
 
 # Extract agency from article content
 #agencies = ['Interfax','The Hindu','The Western Mail','POLITICO','Financial Times','Taipei Times','Agence Europe',
@@ -187,17 +198,327 @@ df=df.reset_index()
 #for agency in agencies:
 #    df3.loc[df3['Content'].str.contains(agency), 'Author'] = agency
 
-# Find languages
+df = df.reset_index()
+df['Date'] = df['FileName'].str[11:21]
+             
+# Detect languages
 import langdetect 
 for i in range(0, len(df)):
     df.loc[i, 'Language'] = langdetect.detect(df.loc[i, 'Content'][0:200])
-
-df4 = df[~df['Language'].isin(['en', 'es','fr'])]
-
-
-
+    
+# Check items with languages other than EN, FR, ES
+#df4 = df[~df['Language'].isin(['en', 'es','fr'])]
 
 
+#################################################
+# Prepare the dataframe for analysis
+# Normalize terms, remove useless words
+#################################################         
+
+# save and read df to/from pickle
+#df.to_pickle('df_save.pck')
+df = pd.read_pickle('df_save.pck')
+
+# Work only on English
+df4 = df[df['Language'].isin(['en'])].copy()
+
+# Combine title and contents
+df4['Text'] = df['Title'] + ' ' + df['Content']
+
+# Normalize terms, remove useless words
+df4['Text'] = df4['Text'].str.replace(r'\'s', '')
+df4['Text'] = df4['Text'].str.replace('years', '')
+df4['Text'] = df4['Text'].str.replace('year', '')
+df4['Text'] = df4['Text'].str.replace('said', '')
+df4['Text'] = df4['Text'].str.replace('important', '')
+df4['Text'] = df4['Text'].str.replace('Indian', 'India')
+df4['Text'] = df4['Text'].str.replace('nextgeneration', 'next generation')
+df4['Text'] = df4['Text'].str.replace('//iconnect\.wto\.org/', '')
+df4['Text'] = df4['Text'].str.replace('-', ' ')
+df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
+
+
+df4['Text'] = df4['Text'].str.replace('‘', '')
+#df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
+#df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
+
+
+
+
+'''######################################################################################
+
+    Clustering analysis referenced from "Document Clustering with Python"
+
+    * use clusters to identify categories
+
+
+######################################################################################'''
+
+import nltk
+from bs4 import BeautifulSoup
+from sklearn import feature_extraction
+#import mpld3
+
+# Prepare lists
+
+texts = df4['Text'].tolist()
+titles = df4['Title'].tolist()
+dates = df4['Date'].tolist()
+articlecodes = df4['ArticleCode'].tolist()
+
+    
+# load nltk's English stopwords as variable called 'stopwords'
+#stopwords = nltk.corpus.stopwords.words('english')
+
+# load nltk's SnowballStemmer as variabled 'stemmer'
+#from nltk.stem.snowball import SnowballStemmer
+#stemmer = SnowballStemmer("english")
+
+
+# MWETokenizer can attach words together
+#####  This is not being used, to test
+#from nltk.tokenize import MWETokenizer
+#tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'), 
+#                          ('united', 'states'), ('european', 'union'),
+#                          ])
+
+#tokenizer.add_mwe(('in', 'spite', 'of'))
+#tokenizer.tokenize('In a little or a little bit world trade organization'.split())
+# Test the function
+#tokenize_and_stem('In World Bank or a_little. bit  _ World Trade Organization. United States')
+
+
+# Use WordNetLemmatizer instead of stemmer
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
+#df['Lemmatized'] = df['StopRemoved'].apply(lambda x: [lemmatizer.lemmatize(y) for y in x])
+
+import string
+
+# Define a tokenizer and stemmer which returns the set of stems in the text that it is passed
+
+def tokenize_and_stem(text):
+    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
+#    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+#    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
+    # Remove punctuation
+    text = text.translate(str.maketrans('','',string.punctuation))
+    
+    # MWETokenizer: manually link words, when disabled, use n-gram range in TF-IDF
+#    tokens = tokenizer.tokenize(text.lower().split())
+    
+    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+
+    filtered_tokens = []
+    # filter out any tokens not containing letters (e.g., numeric tokens, raw punctuation)
+    for token in tokens:
+        if (re.search('[a-zA-Z]', token)): 
+            filtered_tokens.append(token)
+#    stems = [stemmer.stem(t) for t in filtered_tokens]
+    # WordNetLemmatizer
+    stems = [lemmatizer.lemmatize(t) for t in filtered_tokens]
+    return stems
+
+
+def tokenize_only(text):
+    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
+#    tokens = [word.lower() for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+#    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
+    text = text.translate(str.maketrans('','',string.punctuation))
+#    tokens = tokenizer.tokenize(text.lower().split())
+    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+
+    filtered_tokens = []
+    # filter out any tokens not containing letters (e.g., numeric tokens, raw punctuation)
+    for token in tokens:
+        if re.search('[a-zA-Z]', token):
+            filtered_tokens.append(token)
+    return filtered_tokens
+
+totalvocab_stemmed = []
+totalvocab_tokenized = []
+for i in texts:
+    allwords_stemmed = tokenize_and_stem(i)
+    totalvocab_stemmed.extend(allwords_stemmed)
+    
+    allwords_tokenized = tokenize_only(i)
+    totalvocab_tokenized.extend(allwords_tokenized)
+    
+########################################################################
+# Test  
+#df4['Words'] = df4['Text'].apply(tokenize_and_stem)
+#df_word = df['Words'].apply(pd.Series)
+#df_word = df_word.stack().to_frame()
+#df_word.columns = ['POSTagged']
+    
+    
+    
+vocab_frame = pd.DataFrame({'words': totalvocab_tokenized}, index = totalvocab_stemmed)
+
+
+# Check and identify wrong words
+vocab_frame_group = vocab_frame.groupby('words').size()
+
+
+#################################################
+##    Tf-idf and document similarity
+#################################################
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+#tfidf_vectorizer = TfidfVectorizer(max_df=0.8, max_features=200000,
+#                                 min_df=0.2, stop_words='english', 
+#                                 use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
+
+tfidf_vectorizer = TfidfVectorizer(max_df=0.9, max_features=200000,
+                                 min_df=0.1, stop_words='english', 
+                                 use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
+
+%time tfidf_matrix = tfidf_vectorizer.fit_transform(texts)
+
+print(tfidf_matrix.shape)
+
+terms = tfidf_vectorizer.get_feature_names()
+
+from sklearn.metrics.pairwise import cosine_similarity
+dist = 1 - cosine_similarity(tfidf_matrix)
+
+#################################################
+##    K-means clustering
+#################################################
+
+from sklearn.cluster import KMeans
+num_clusters = 15
+km = KMeans(n_clusters=num_clusters)
+%time km.fit(tfidf_matrix)
+clusters = km.labels_.tolist()
+
+df_tfidf_matrix = pd.DataFrame(tfidf_matrix.toarray())
+
+#################################################
+#from sklearn.externals import joblib
+#
+##joblib.dump(km,  'doc_cluster.pkl')
+#km = joblib.load('doc_cluster.pkl')
+#clusters = km.labels_.tolist()
+#################################################
+
+#################################################
+# Clustering results to DF
+#################################################
+
+news = {'title': titles, 'text': texts,'date': dates,'artilecode': articlecodes,  'cluster': clusters}
+frame = pd.DataFrame(news, index = [clusters], columns = ['date','articlecode','title','text','cluster'])
+
+frame['cluster'].value_counts()
+
+# print top words of each cluster
+print("Top terms per cluster:")
+print()
+order_centroids = km.cluster_centers_.argsort()[:, ::-1]
+for i in range(num_clusters):
+    print("Cluster %d words:" % i, end='')
+    for ind in order_centroids[i, :6]:
+        print(' %s' % vocab_frame.ix[terms[ind].split(' ')].values.tolist()[0][0], end=',')
+    print()
+    print()
+    print("Cluster %d titles:" % i, end='')
+    for title in frame.ix[i]['title'].values.tolist():
+        print(' %s ¦¦ ' % title, end='')
+    print()
+    print()
+
+    
+# export to sqlite for use of the flask app   
+con = db.connect('C:/Users/morreene/Projects/tradenews/dev.db')    
+frame.to_sql('newscluster', con, flavor='sqlite',
+                schema=None, if_exists='replace', index=True,
+                index_label=None, chunksize=None, dtype=None)
+con.close()
+
+###########################################################
+# Hierarchical document clustering
+###########################################################
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+from scipy.cluster.hierarchy import ward, dendrogram
+
+linkage_matrix = ward(dist) #define the linkage_matrix using ward clustering pre-computed distances
+
+fig, ax = plt.subplots(figsize=(15, 20)) # set size
+ax = dendrogram(linkage_matrix, orientation="right", labels=titles);
+
+plt.tick_params(\
+    axis= 'x',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom='off',      # ticks along the bottom edge are off
+    top='off',         # ticks along the top edge are off
+    labelbottom='off')
+
+plt.tight_layout() #show plot with tight layout
+
+#uncomment below to save figure
+plt.savefig('ward_clusters.png', dpi=200) #save figure as ward_clusters
+
+
+
+###########################################################
+# Latent Dirichlet Allocation
+###########################################################
+
+#strip any proper names from a text...unfortunately right now this is yanking the first word from a sentence too.
+import string
+def strip_proppers(text):
+    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
+    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent) if word.islower()]
+    return "".join([" "+i if not i.startswith("'") and i not in string.punctuation else i for i in tokens]).strip()
+
+
+from gensim import corpora, models, similarities 
+
+#remove proper names
+%time preprocess = [strip_proppers(doc) for doc in texts]
+
+#tokenize
+%time tokenized_text = [tokenize_and_stem(text) for text in preprocess]
+
+#remove stop words
+%time texts = [[word for word in text if word not in stopwords] for text in tokenized_text]
+
+
+#create a Gensim dictionary from the texts
+dictionary = corpora.Dictionary(texts)
+
+#remove extremes (similar to the min/max df step used when creating the tf-idf matrix)
+dictionary.filter_extremes(no_below=1, no_above=0.8)
+
+#convert the dictionary to a bag of words corpus for reference
+corpus = [dictionary.doc2bow(text) for text in texts]
+
+# took 43 min to finish
+%time lda = models.LdaModel(corpus, num_topics=20, id2word=dictionary, update_every=5, chunksize=10000, passes=100)
+
+
+################################################
+#from sklearn.externals import joblib
+##
+#joblib.dump(lda,  'lda.pkl')
+##km = joblib.load('doc_cluster.pkl')
+##clusters = km.labels_.tolist()
+################################################
+
+
+lda.show_topics()
+
+topics_matrix = lda.show_topics(formatted=False, num_words=20)
+topics_matrix1 = np.array(topics_matrix, dtype=float)
+
+topic_words = topics_matrix[:,:,1]
+for i in topic_words:
+    print([str(word) for word in i])
+    print()
 
 
 
@@ -225,9 +546,44 @@ df4 = df[~df['Language'].isin(['en', 'es','fr'])]
 
 
 
-#df.to_csv('ArticleTable.txt', sep='§')
 
-##################################################################
-#   Other Codes
-##################################################################
+
+
+
+
+
+
+
+
+# CVwctorize
+
+from sklearn.feature_extraction.text import CountVectorizer
+docs = ['this this this book',
+        'this cat good',
+        'cat good shit']
+count_model = CountVectorizer(ngram_range=(1,1)) # default unigram model
+X = count_model.fit_transform(df4['Text'])
+
+print(X)
+
+Xc = (X.T * X) # this is co-occurrence matrix in sparse csr format
+Xc.setdiag(0) # sometimes you want to fill same word cooccurence to 0
+print(Xc.todense()) # print out matrix in dense format
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
