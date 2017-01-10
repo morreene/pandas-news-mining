@@ -6,6 +6,7 @@ import codecs
 import os
 import re
 import sqlite3 as db
+import pyodbc
 #import itertools
 
 '''###################################################################################################
@@ -215,42 +216,40 @@ for i in range(0, len(df)):
 # Normalize terms, remove useless words
 #################################################         
 
-# save and read df to/from pickle
+# Save and read documents to/from pickle
 #df.to_pickle('df_save.pck')
 df = pd.read_pickle('df_save.pck')
 
-# Work only on English
+# Only work on English documents
 df4 = df[df['Language'].isin(['en'])].copy()
 
 # Combine title and contents
 df4['Text'] = df['Title'] + ' ' + df['Content']
 
-# Normalize terms, remove useless words
+# Normalize words
 df4['Text'] = df4['Text'].str.replace(r'\'s', '')
-df4['Text'] = df4['Text'].str.replace('years', '')
-df4['Text'] = df4['Text'].str.replace('year', '')
-df4['Text'] = df4['Text'].str.replace('said', '')
-df4['Text'] = df4['Text'].str.replace('important', '')
 df4['Text'] = df4['Text'].str.replace('Indian', 'India')
 df4['Text'] = df4['Text'].str.replace('nextgeneration', 'next generation')
 df4['Text'] = df4['Text'].str.replace('//iconnect\.wto\.org/', '')
 df4['Text'] = df4['Text'].str.replace('-', ' ')
 df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
+df4['Text'] = df4['Text'].str.replace('US', 'United States')
 
-
+df4['Text'] = df4['Text'].str.replace('S.Korea', 'South Korea')
+df4['Text'] = df4['Text'].str.replace('S. Korea', 'South Korea')
+df4['Text'] = df4['Text'].str.replace('WTO', 'world trade organization')
 df4['Text'] = df4['Text'].str.replace('‘', '')
+df4['Text'] = df4['Text'].str.replace('imports', 'import')
+df4['Text'] = df4['Text'].str.replace('Imports', 'import')
+df4['Text'] = df4['Text'].str.replace('exports', 'export')
+df4['Text'] = df4['Text'].str.replace('Exports', 'export')
+
 #df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
-#df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
-
-
-
 
 '''######################################################################################
 
     Clustering analysis referenced from "Document Clustering with Python"
-
     * use clusters to identify categories
-
 
 ######################################################################################'''
 
@@ -260,89 +259,98 @@ from sklearn import feature_extraction
 #import mpld3
 
 # Prepare lists
-
-texts = df4['Text'].tolist()
-titles = df4['Title'].tolist()
-dates = df4['Date'].tolist()
-articlecodes = df4['ArticleCode'].tolist()
+lst_texts = df4['Text'].tolist()
+lst_titles = df4['Title'].tolist()
+lst_dates = df4['Date'].tolist()
+lst_articlecodes = df4['ArticleCode'].astype(int).tolist()
 
     
 # load nltk's English stopwords as variable called 'stopwords'
-#stopwords = nltk.corpus.stopwords.words('english')
-
-# load nltk's SnowballStemmer as variabled 'stemmer'
-#from nltk.stem.snowball import SnowballStemmer
-#stemmer = SnowballStemmer("english")
+my_stop_words = nltk.corpus.stopwords.words('english')
+my_stop_words = my_stop_words + ['world_trade_organization','years','year','said','important',
+                                 'new','would','','','','']
 
 
 # MWETokenizer can attach words together
-#####  This is not being used, to test
-#from nltk.tokenize import MWETokenizer
-#tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'), 
-#                          ('united', 'states'), ('european', 'union'),
-#                          ])
-
-#tokenizer.add_mwe(('in', 'spite', 'of'))
+from nltk.tokenize import MWETokenizer
+tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'), ('doha', 'round'),
+                          ('united', 'states'), ('european', 'union'), ('new', 'zealand'),
+                          ('per', 'cent'),('south', 'korea'),
+                          ])
+# Test the tokenizer
 #tokenizer.tokenize('In a little or a little bit world trade organization'.split())
 # Test the function
 #tokenize_and_stem('In World Bank or a_little. bit  _ World Trade Organization. United States')
 
+## load nltk's SnowballStemmer as variabled 'stemmer'
+#from nltk.stem.snowball import SnowballStemmer
+#stemmer = SnowballStemmer("english")
 
 # Use WordNetLemmatizer instead of stemmer
-from nltk.stem import WordNetLemmatizer
-lemmatizer = WordNetLemmatizer()
+#from nltk.stem import WordNetLemmatizer
+#lemmatizer = WordNetLemmatizer()
 #df['Lemmatized'] = df['StopRemoved'].apply(lambda x: [lemmatizer.lemmatize(y) for y in x])
 
-import string
+#import string
 
 # Define a tokenizer and stemmer which returns the set of stems in the text that it is passed
-
 def tokenize_and_stem(text):
-    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
-#    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
-#    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
     # Remove punctuation
-    text = text.translate(str.maketrans('','',string.punctuation))
+#    text = text.translate(str.maketrans('','',string.punctuation))
+
+    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
+    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+#    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
     
     # MWETokenizer: manually link words, when disabled, use n-gram range in TF-IDF
 #    tokens = tokenizer.tokenize(text.lower().split())
+    tokens = tokenizer.tokenize(tokens)
     
-    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
 
     filtered_tokens = []
     # filter out any tokens not containing letters (e.g., numeric tokens, raw punctuation)
     for token in tokens:
         if (re.search('[a-zA-Z]', token)): 
             filtered_tokens.append(token)
+    stems = filtered_tokens
 #    stems = [stemmer.stem(t) for t in filtered_tokens]
     # WordNetLemmatizer
-    stems = [lemmatizer.lemmatize(t) for t in filtered_tokens]
+#    stems = [lemmatizer.lemmatize(t) for t in filtered_tokens]
     return stems
 
 
-def tokenize_only(text):
-    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
-#    tokens = [word.lower() for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
-#    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
-    text = text.translate(str.maketrans('','',string.punctuation))
+#def tokenize_only(text):
+#    # Remove punctuation
+##    text = text.translate(str.maketrans('','',string.punctuation))
+#
+#    # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
+##    tokens = [word.lower() for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+##    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+##    tokens = [word for sent in nltk.sent_tokenize(text) for word in tokenizer.tokenize(sent.lower().split())]
+#
+#    # MWETokenizer: manually link words, when disabled, use n-gram range in TF-IDF
 #    tokens = tokenizer.tokenize(text.lower().split())
-    tokens = [word for sent in nltk.sent_tokenize(text) for word in nltk.word_tokenize(sent)]
+#
+#
+#    filtered_tokens = []
+#    # filter out any tokens not containing letters (e.g., numeric tokens, raw punctuation)
+#    for token in tokens:
+#        if re.search('[a-zA-Z]', token):
+#            filtered_tokens.append(token)
+#    return filtered_tokens
+#
+#totalvocab_stemmed = []
+#totalvocab_tokenized = []
+#for i in texts:
+#    allwords_stemmed = tokenize_and_stem(i)
+#    totalvocab_stemmed.extend(allwords_stemmed)
+#    
+#    allwords_tokenized = tokenize_only(i)
+#    totalvocab_tokenized.extend(allwords_tokenized)
 
-    filtered_tokens = []
-    # filter out any tokens not containing letters (e.g., numeric tokens, raw punctuation)
-    for token in tokens:
-        if re.search('[a-zA-Z]', token):
-            filtered_tokens.append(token)
-    return filtered_tokens
+df4['Wordsss'] = df4['Text'].apply(tokenize_and_stem)
 
-totalvocab_stemmed = []
-totalvocab_tokenized = []
-for i in texts:
-    allwords_stemmed = tokenize_and_stem(i)
-    totalvocab_stemmed.extend(allwords_stemmed)
-    
-    allwords_tokenized = tokenize_only(i)
-    totalvocab_tokenized.extend(allwords_tokenized)
+dddddd=df4[df4['Text'].str.contains(' ha ')]
     
 ########################################################################
 # Test  
@@ -370,11 +378,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 #                                 min_df=0.2, stop_words='english', 
 #                                 use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
 
-tfidf_vectorizer = TfidfVectorizer(max_df=0.9, max_features=200000,
-                                 min_df=0.1, stop_words='english', 
-                                 use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
 
-%time tfidf_matrix = tfidf_vectorizer.fit_transform(texts)
+
+tfidf_vectorizer = TfidfVectorizer(max_df=0.9, max_features=200000,
+                                   min_df=0.1, stop_words=my_stop_words, 
+                                   use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
+
+%time tfidf_matrix = tfidf_vectorizer.fit_transform(lst_texts)
 
 print(tfidf_matrix.shape)
 
@@ -388,7 +398,7 @@ dist = 1 - cosine_similarity(tfidf_matrix)
 #################################################
 
 from sklearn.cluster import KMeans
-num_clusters = 15
+num_clusters = 30
 km = KMeans(n_clusters=num_clusters)
 %time km.fit(tfidf_matrix)
 clusters = km.labels_.tolist()
@@ -407,34 +417,37 @@ df_tfidf_matrix = pd.DataFrame(tfidf_matrix.toarray())
 # Clustering results to DF
 #################################################
 
-news = {'title': titles, 'text': texts,'date': dates,'artilecode': articlecodes,  'cluster': clusters}
+news = {'date': lst_dates,'articlecode': lst_articlecodes,
+        'title': lst_titles,'text': lst_texts,'cluster': clusters}
 frame = pd.DataFrame(news, index = [clusters], columns = ['date','articlecode','title','text','cluster'])
 
 frame['cluster'].value_counts()
 
+# Export to Access to analyze clusters
+frame.to_csv('newsclusters.txt', sep='^')
+
+
 # print top words of each cluster
 print("Top terms per cluster:")
-print()
+
 order_centroids = km.cluster_centers_.argsort()[:, ::-1]
 for i in range(num_clusters):
-    print("Cluster %d words:" % i, end='')
+    print()
+    pterms=''
+    print("Cluster %d: " % i, end='')
     for ind in order_centroids[i, :6]:
-        print(' %s' % vocab_frame.ix[terms[ind].split(' ')].values.tolist()[0][0], end=',')
-    print()
-    print()
-    print("Cluster %d titles:" % i, end='')
-    for title in frame.ix[i]['title'].values.tolist():
-        print(' %s ¦¦ ' % title, end='')
-    print()
-    print()
+#        print(' %s' % vocab_frame.ix[terms[ind].split(' ')].values.tolist()[0][0], end=',')
+#        print(' %s' % terms[ind], end=',')        
+        pterms = pterms + terms[ind]+', '
+    print(pterms)
+    
+#    print("Cluster %d titles:" % i, end='')
+#    for title in frame.ix[i]['title'].values.tolist():
+#        print(' %s ¦¦ ' % title, end='')
+#    print()
+#    print()
 
     
-# export to sqlite for use of the flask app   
-con = db.connect('C:/Users/morreene/Projects/tradenews/dev.db')    
-frame.to_sql('newscluster', con, flavor='sqlite',
-                schema=None, if_exists='replace', index=True,
-                index_label=None, chunksize=None, dtype=None)
-con.close()
 
 ###########################################################
 # Hierarchical document clustering
@@ -479,13 +492,13 @@ def strip_proppers(text):
 from gensim import corpora, models, similarities 
 
 #remove proper names
-%time preprocess = [strip_proppers(doc) for doc in texts]
+%time preprocess = [strip_proppers(doc) for doc in lst_texts]
 
 #tokenize
 %time tokenized_text = [tokenize_and_stem(text) for text in preprocess]
 
 #remove stop words
-%time texts = [[word for word in text if word not in stopwords] for text in tokenized_text]
+%time texts = [[word for word in text if word not in my_stop_words] for text in tokenized_text]
 
 
 #create a Gensim dictionary from the texts
@@ -502,9 +515,9 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 
 
 ################################################
-#from sklearn.externals import joblib
-##
-#joblib.dump(lda,  'lda.pkl')
+from sklearn.externals import joblib
+#
+joblib.dump(lda,  'lda.pkl')
 ##km = joblib.load('doc_cluster.pkl')
 ##clusters = km.labels_.tolist()
 ################################################
