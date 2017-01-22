@@ -74,6 +74,8 @@ def extractor(filename):
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')    
     df_raw['Texts'] = df_raw['Texts'].str.replace(r' +', ' ')
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'’s', '')
+    
 #    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\n', '')
 #    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\r', '')
     
@@ -243,6 +245,9 @@ df4['Text'] = df4['Text'].str.replace('imports', 'import')
 df4['Text'] = df4['Text'].str.replace('Imports', 'import')
 df4['Text'] = df4['Text'].str.replace('exports', 'export')
 df4['Text'] = df4['Text'].str.replace('Exports', 'export')
+df4['Text'] = df4['Text'].str.replace('NZ ', 'New Zealand ')
+df4['Text'] = df4['Text'].str.replace('\"', '')
+df4['Text'] = df4['Text'].str.replace('\'', '')
 
 #df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
 
@@ -267,9 +272,14 @@ lst_articlecodes = df4['ArticleCode'].astype(int).tolist()
     
 # load nltk's English stopwords as variable called 'stopwords'
 my_stop_words = nltk.corpus.stopwords.words('english')
+
+# Stop words normal
 my_stop_words = my_stop_words + ['world_trade_organization','years','year','said','important',
                                  'new','would','','','','']
 
+# Stop words excluding country names  NOT WORKING
+#my_stop_words = my_stop_words + ['world_trade_organization','years','year','said','important','new','would','united_states',
+#                                   'japan','india','obama','canada','mexico','russia','eu','european','china','chinese','would']
 
 # MWETokenizer can attach words together
 from nltk.tokenize import MWETokenizer
@@ -374,12 +384,6 @@ vocab_frame_group = vocab_frame.groupby('words').size()
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-#tfidf_vectorizer = TfidfVectorizer(max_df=0.8, max_features=200000,
-#                                 min_df=0.2, stop_words='english', 
-#                                 use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
-
-
-
 tfidf_vectorizer = TfidfVectorizer(max_df=0.9, max_features=200000,
                                    min_df=0.1, stop_words=my_stop_words, 
                                    use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
@@ -398,7 +402,7 @@ dist = 1 - cosine_similarity(tfidf_matrix)
 #################################################
 
 from sklearn.cluster import KMeans
-num_clusters = 30
+num_clusters = 15
 km = KMeans(n_clusters=num_clusters)
 %time km.fit(tfidf_matrix)
 clusters = km.labels_.tolist()
@@ -434,7 +438,7 @@ order_centroids = km.cluster_centers_.argsort()[:, ::-1]
 for i in range(num_clusters):
     print()
     pterms=''
-    print("Cluster %d: " % i, end='')
+#    print("%d\t " % i, end='')
     for ind in order_centroids[i, :6]:
 #        print(' %s' % vocab_frame.ix[terms[ind].split(' ')].values.tolist()[0][0], end=',')
 #        print(' %s' % terms[ind], end=',')        
