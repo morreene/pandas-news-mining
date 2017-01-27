@@ -1,3 +1,8 @@
+import os
+os.getcwd()
+os.chdir(r"F:\Projects\pandas-news-mining")
+###################################################################################################
+
 import pandas as pd
 import numpy as np
 import datefinder
@@ -9,36 +14,6 @@ import sqlite3 as db
 import pyodbc
 #import itertools
 
-'''###################################################################################################
-   Export Outlook emails to TXT files
-   Emails should be under Outlook folder "@ News" >> "To Export"
-   This part can only run on office computer with outlook configration
-   It needs only run once for a set of emails (say for emails in 2015)
-###################################################################################################'''
-
-outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-folder = outlook.Folders("Dayong.Yu@wto.org").Folders("@ Other").Folders("News").Folders("@ News 2015").Folders("tmp")
-
-messages = folder.Items
-#print(messages.count)
-
-for message in messages:
-    str_subject = message.subject.replace('News, Monday', '')
-    str_subject = str_subject.replace('news, Monday', '')
-    str_subject = str_subject.replace('news. Monday', '')
-    str_subject = str_subject.replace('news Monday', '')
-    
-    # Extract date from subject to use as file name
-    matches = list(datefinder.find_dates(str_subject))
-    if len(matches) > 0:    
-        filedate = matches[0].date()
-    else:
-        filedate = message.subject
-
-    text_file = codecs.open('Files2015A/' + str(filedate) +'.txt', 'w', encoding='utf-8')
-    text_file.write(message.body)
-    text_file.close()
-#    print(message.subject)
 
 '''######################################################################################
     Extract articles from a TXT file and convert to DF
@@ -67,6 +42,7 @@ def extractor(filename):
     # Remove bulletes
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'•\t', '')
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'•', '')
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'¡P', '')
@@ -130,7 +106,7 @@ df_title = pd.DataFrame()
 
 # Run extractor on all files under the directory
 # Problematic file will be identified for further investgation: likely to be irregular format
-indir = 'Files2015A/'
+indir = 'Files2016/'
 for root, dirs, filenames in os.walk(indir):
     for f in filenames:
         try:
