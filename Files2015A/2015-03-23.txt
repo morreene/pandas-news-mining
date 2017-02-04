@@ -1,0 +1,472 @@
+HEADLINES:
+ 
+·         HYPERLINK \l "WTO director-general to visit Riga
+·         HYPERLINK \l "New Zealand Spied on WTO Director Candidates
+·         HYPERLINK \l "NZ spies monitored Groser rivals
+·         HYPERLINK \l "NZ-Korea FTA signed amid spying, lost sovereignty claims
+·         HYPERLINK \l "U.S. Pushes Proposal on E-Commerce, Data Security, Privacy in TISA Discussions
+·         HYPERLINK \l "WTO Members to Resume Doha Discussions, Will Examine Dispute Settlement Decisions
+·         HYPERLINK \l "India opposes new US proposals on food stocks
+·         HYPERLINK \l "Indonesia plans levy of $50/T on crude palm exports instead of tax threshold cut
+·         HYPERLINK \l "Local poultry chief says US asking SA to shrink its economy
+·         HYPERLINK \l "'Economic emergence': the potential of fair African development
+·         HYPERLINK \l "U.S. proposes cooperation between new China-led bank and Western institutions -WSJ
+·         HYPERLINK \l "Singapore patriarch Lee Kuan Yew dies
+ 
+ 
+WTO director-general to visit Riga 
+23 March 2015
+Latvian News Agency
+ 
+RIGA, March 23 (LETA) - Director-General of the World Trade Organization (WTO), Roberto Azevedo, will arrive in Riga on a working visit today. This is the WTO director-general's first visit to Latvia.While in Riga, Azevedo will meet with President Andris Berzins, Prime Minister Laimdota Straujuma, Foreign Minister Edgars Rinkevics, and the President of the Bank of Latvia Ilmars Rimsevics.
+
+At the meetings, discussions are planned on international trade and the role of trade and commerce in promoting economic growth.At 3 p.m., Azevedo will deliver a public lecture at the Stockholm School of Economics in Riga on the WTO's achievements and the challenges faced over the 20 years of its existence, and the prospects of the multi-lateral trading system.The WTO director-general will take part in the working dinner with the European Union state ministers of trade to discuss the key issues on the WTO agenda such as steps required for the successful conclusion of the Doha Round and the organization's further development.Meanwhile, on March 24-25, Rinkevics will welcome EU ministers for trade and Trade Commissioner Cecilia Malmstrom's visit to Riga.
+
+ 
+New Zealand Spied on WTO Director Candidates
+By Ryan Gallagher
+The Intercept
+22 March 2015
+ 
+New Zealand launched a covert surveillance operation targeting candidates vying to be director general of the World Trade Organization, a top-secret document reveals.
+
+In the period leading up to the May 2013 appointment, the country’s electronic eavesdropping agency programmed an Internet spying system to intercept emails about a list of high-profile candidates from Brazil, Costa Rica, Ghana, Indonesia, Jordan, Kenya, Mexico, and South Korea.
+
+New Zealand’s trade minister Tim Groser was one of nine candidates in contention for the position at the WTO, a powerful international organization based in Geneva, Switzerland that negotiates trade agreements between nations. The surveillance operation, carried out by Government Communications Security Bureau, or GCSB, appears to have been part of a secret effort to help Groser win the job.
+
+Groser ultimately failed to get the position.
+
+A top-secret document obtained by The Intercept and the New Zealand Herald reveals how GCSB used the XKEYSCORE Internet surveillance system to collect communications about the WTO director general candidates.
+
+XKEYSCORE is run by the National Security Agency and is used to analyze billions of emails, Internet browsing sessions and online chats that are vacuumed up from about 150 different locations worldwide. GCSB has gained access to XKEYSCORE because New Zealand is a member of the Five Eyes surveillance alliance alongside the United States, the United Kingdom, Canada and Australia.
+
+The WTO spying document shows how the New Zealand agency created an XKEYSCORE targeting “fingerprint,” a combination of names and keywords used to extract particular information from the vast quantities of emails and other communications accessible through the system. The document reveals that a fingerprint was specially tailored to monitor the WTO candidates and was “used to sort traffic by priority,” looking for “keywords [as they] appear in the email_body.” It is stamped with a “last modified” date of 6 May 2013, about a week before the new director general was to be announced.
+
+Two different intelligence searches were carried out by the GCSB staff as part of what they termed the “WTO Project.” First, they looked for emails referring to Groser, the WTO, the director general candidacy, and the surnames of the other candidates: Alan John Kwadwo Kyerematen (Ghana); Amina Mohamed (Kenya); Anabel González (Costa Rica); Herminio Blanco (Mexico); Mari Elka Pangestu (Indonesia); Taeho Bark (South Korea); Ahmad Thougan Hindawi (Jordan); and Roberto Carvalho de Azevêdo (Brazil).
+
+Second, they zeroed in on the Indonesian candidate, Pangestu, that country’s former minister of trade and a professional economist. A separate XKEYSCORE fingerprint was created, headed “WTO DG Candidacy issues – focus on Indonesian candidate.” This was presumably because the New Zealand government was particularly concerned that the job might go to another Pacific candidate ahead of Groser.
+
+The surveillance of Pangestu appears to have targeted all Internet communications (not just email) containing the name “Pangestu,” the words “Indonesia,” “WTO” and “candidacy,” and the other candidates’ names.
+
+The searches had keyword instructions in English, French and Spanish – for instance “zealand”, “zelande” and “zelandia” – in order to catch communications from more countries. The intercepted messages were to be passed to the GCSB’s “trade team,” which would likely have had the job of collating intelligence for people in government involved in Groser’s bid for the WTO role.
+
+The Intercept and the New Zealand Herald attempted to contact each of the named targets prior to publication. Several were not reachable or did not respond to a request for comment. A spokesman for the WTO had not responded to multiple requests for comment at time of publication (update below).
+
+Bark, the South Korean candidate, said he had no inkling that he was the focus of surveillance during his bid for the director general role. He told the New Zealand Herald he had received no intelligence agency support as part of his own campaign. “It’s a different world for very advanced countries,” he said.
+
+Bark, now an academic at Seoul National University and South Korea’s ambassador-at-large for international economy and trade, added that he was not “offended” by the spying because he didn’t think it had any impact on the outcome of his effort to get the WTO job. But he predicted others would be stung by the eavesdropping revelations. “The Indonesian candidate would be very upset,” he said.
+
+International economic law expert Meredith Kolsky Lewis, who specializes in the WTO, said she was “a bit shocked” at the allegation New Zealand had spied on emails about the director general candidates.
+
+“I’m a little surprised that New Zealand used the surveillance power available to it for this purpose,” Lewis said. “It’s possible those who ordered the surveillance wanted to know who other countries in the region supported.”
+
+Andrew Little, leader of New Zealand’s Labour Party, criticized the surveillance and described it as “completely out of order.”
+
+“It just seems outrageous,” Little said. “I would have thought that [to be] a misuse of our security and intelligence agencies. It seems to me right outside the mandate of the GCSB. It’s nothing to do with security threats.”
+
+It was in late 2012 that Groser was nominated for the position at the WTO.
+
+The New Zealand trade minister launched a lobbying campaign as part of his candidacy bid, traveling to Europe, the United States, Africa, the Caribbean and around the Pacific Islands in an effort to win support from members of the WTO’s general council, which includes representatives from 160 countries.
+
+However, his campaign was unsuccessful. Brazil’s Azevêdo (pictured above) was appointed the WTO’s new director general on 14 May 2013.
+
+Three weeks earlier, when it had become clear that Groser was not going to make the final shortlist, New Zealand’s prime minister, John Key, expressed his disappointment. “At the end of the day it was always going to be a long shot – so he gave it his best go with the support of the government,” Key said.
+
+What the public didn’t know was that this support had included deploying the GCSB to spy on communications about the competitors.
+
+At the time of the surveillance, prime minister Key was the minister in charge of the GCSB, raising the question of whether he knew about and personally sanctioned the electronic eavesdropping to help Groser.
+
+A spokesman for Key declined to answer any questions about the WTO spying and instead issued a boilerplate response. “New Zealand’s intelligence agencies have been, and continue to be, a significant contributor to our national security and the security of New Zealanders at home and abroad,” the spokesman said.
+
+Groser, reached by New Zealand Herald reporters late Saturday, said the government wouldn’t discuss “such leaks” because he claimed they were “often wrong, [and] they are deliberately timed to try and create political damage.” Asked if he knew the GCSB was conducting surveillance for him, he said: “I’ve got no comment to make whatsoever.”
+
+GCSB also declined to comment on any of the specific revelations. In a statement, the agency’s acting director, Una Jagose, said: “The GCSB exists to protect New Zealand and New Zealanders. We have a foreign intelligence mandate. We don’t comment on speculation about matters that may or may not be operational. Everything we do is explicitly authorized and subject to independent oversight.”
+
+Last week, The Intercept revealed that GCSB used XKEYSCORE to target top government officials and an anti-corruption campaigner in the Solomon Islands.
+
+Earlier disclosures, which were based on documents from NSA whistleblower Edward Snowden, have exposed how New Zealand is funneling data into XKEYSCORE from a surveillance base in the Waihopai Valley and is spying on about 20 countries across the world, predominantly in the Asia-Pacific region, among them small Pacific islands and major trading partners including Japan, Vietnam, and China.
+
+The Intercept is reporting details about New Zealand’s surveillance operations in collaboration with the New Zealand Herald, the Herald on Sunday, and the Sunday Star-Times.
+
+Update, March 22, 2015 at 17:30 ET: Reached by phone Sunday, WTO spokesman Keith Rockwell told The Intercept he was “learning about this for the very first time” and said he would not comment on the New Zealand spying until he had looked closer at the details. “Tomorrow morning I’ll go into the office and we’ll discuss it and we’ll try to figure out what’s going on,” he said.
+ 
+ 
+NZ spies monitored Groser rivals 
+David Fisher david.fisher@nzherald.co.nz 
+23 March 2015
+The New Zealand Herald
+ 
+Exclusive Secret document reveals Five Eyes software used for surveillance on candidates for WTO job
+
+Our spies monitored email and internet traffic about international diplomats vying for the job of director- general of the World Trade Organisation — a job for which National Government Trade Minister Tim Groser was competing.
+
+The spying operation was active in 2013 and called the “WTO Project” by New Zealand’s Government Communications Security Bureau (GCSB), according to a top secret document obtained by the Herald and United States news site The Intercept.
+
+The operation involved covert surveillance of candidates from Brazil, Costa Rica, Ghana, Jordan, Indonesia, Kenya, Mexico and South Korea.
+
+The GCSB tasking document which structured the search of internet traffic was designed to look for references to Mr Groser, the World Trade Organisation (WTO) role and his competitors, initially in any online communication but then narrowed to emails. Prime Minister John Key, who is in South Korea today with Mr Groser witnessing the signing of a Free Trade Agreement, refused to address the issue when approached for comment.
+
+His office issued exactly the same statement released since the Herald and The Intercept began reporting internal GCSB and NSA documents relating to New Zealand.
+
+In it, the Prime Minister’s office spoke of the GCSB’s contribution to national security, assured the public mass surveillance was not happening and that the agency operated legally.
+
+“The Government will not be responding to claims made from documents stolen by Edward Snowden.”
+
+Mr Groser said last night: “We do not comment on such leaks because they are often wrong, they are deliberately timed to try and create political damage and we do not comment on any of them.”
+
+Asked if he knew the GCSB was conducting surveillance for him, he said: “I’ve got no comment to make whatsoever.”
+
+The documents show the WTO surveillance was carried out with the XKeyscore tool developed by the United States’ National Security Agency (NSA) and used by the GCSB as part of the Five Eyes intelligence network, which includes New Zealand, Australia, Canada, the United Kingdom and the United States.
+
+The surveillance operation was tailored to intercept electronic communications mentioning any of the candidates.
+
+It specifically instructed the search to seek out communications with the name “Grosser” or “Groser”.
+
+The GCSB also ran a specially targeted surveillance on the candidate from Indonesia, the country’s former Trade Minister Mari Pangestu.
+
+The South Korean candidate for the WTO director-general’s job — Dr Taeho Bark — was among those targeted by the GCSB.
+
+Dr Bark, now an academic at Seoul National University and South Korea’s Ambassador-at-Large for International Economy and Trade, said he had no inkling any of the countries involved would have used electronic surveillance of the sort described.
+
+He said there was no assistance of the sort described to support his bid for the job.
+
+“I don’t have any kind of information through an intelligence organisation or bureau. It’s a different world for very advanced countries.”
+
+He said he was not offended because he believed it would not have changed the outcome of his failed bid for the role.
+
+International economic law expert Professor Meredith Lewis, who specialises in the WTO, said she was “quite shocked” and “a little surprised” at the allegation New Zealand had spied on candidates. Professor Lewis said she could not see what advantage Mr Groser would have gained.
+
+“The impression I got at the middle stage was that the candidates had their strong suits and weak suits you could identify without surveillance.’’
+
+The GCSB’s acting director Una Jagose, in response to questions about the WTO operation, said: “The GCSB exists to protect New Zealand and New Zealanders.
+
+‘‘We have a foreign intelligence mandate. We don’t comment on speculation about matters that may or may not be operational.
+
+“Everything we do is explicitly authorised.”
+
+Labour leader Andrew Little was horrified on being told of the operation.
+
+“It just seems outrageous. I would have thought that a misuse of our security and intelligence agencies.
+
+‘‘It seems to me right outside the mandate of the GCSB. It’s nothing to do with security threats.”
+
+Mr Little said it was an “unsavoury” way to campaign for an international position and it raised questions about how New Zealand had campaigned for other roles, including the UN Security Council. “That would be extremely disappointing,” he said.
+
+The Green Party co-leader Russel Norman said the revelation the GCSB was used to carry out surveillance on candidates for the WTO job would be “extremely damaging to New Zealand’s reputation”.
+ 
+ 
+NZ-Korea FTA signed amid spying, lost sovereignty claims 
+Pattrick Smellie 
+23 March 2015
+BusinessDesk
+ 
+NZ-Korea FTA signed amid spying, lost sovereignty claims
+
+March 23 (BusinessDesk) - A long-awaited free trade agreement between New Zealand and South Korea has been signed in Seoul by Prime Minister John Key and the Korean president, Park Geun-hye.
+
+The deal with New Zealand's sixth-largest market for export products will make progressive inroads into the $229 million annual imposition of tariffs on New Zealand goods and services, mainly agricultural products, entering the South Korean market annually and had become urgent after competitors in the beef trade, Australia and Canada, had already signed such agreements.
+
+The signing in Seoul coincided with the release to the New Zealand Herald of documents showing New Zealand's signals intelligence agency, the Government Communications Security Bureau, had in 2013 spied on efforts by South Korea to promote its Trade Minister, Taeho Bark, to become secretary-general of the World Trade Organisation, a position also sought by New Zealand Trade Minister Tim Groser.
+
+Both the New Zealand Council of Trade Unions and anti-FTA campaigner Jane Kelsey criticised the new agreement, saying it eroded New Zealand sovereignty through its inclusion of investor-state dispute settlement terms without achieving the same degree of market access as was achieved in the Australian and Canadian FTA's with Korea.
+
+"We need to ask why New Zealand is signing up to more ISDS provisions when we are fortunate to have relatively few of them. The answer may lie, once again, in the preoccupation with the agriculture parts of these deals without considering how real the gains are over how long and what trade offs are involved," Kelsey said.
+
+Labour leader Andrew Little criticised the use of the GCSB to assist New Zealand's WTO bid, but Labour had issued no statement on the FTA by time of publication.
+
+Estimated tariff reductions on a range of agricultural goods is estimated at $65 million in the first year of the agreement, which is expected to come into force this year following ratification by the New Zealand parliament.
+
+Two-way trade between New Zealand and South Korea is currently worth around $4 billion annually. The FTA contemplates a 15-year phase-in period, at which point 98 percent of goods from New Zealand are estimated to enter South Korea duty-free.
+ 
+ 
+U.S. Pushes Proposal on E-Commerce, Data Security, Privacy in TISA Discussions
+By Bryce Baschuk
+BNA Reporter, March 23, 2015
+ 
+March 20 — The U.S. reaffirmed its desire to adopt new international rules regarding e-commerce, data security and privacy at a March 18 meeting of the World Trade Organization's Council for Trade in Services.
+ 
+The U.S. proposal, which was first submitted on Nov. 27, 2014, seeks specific commitments aimed at preventing its trading partners from engaging in forced technology transfer and forced localization practices to support their domestic technology sectors, according to a leaked copy of the proposal.
+ 
+The U.S. said at the March 18 meeting that the proposal was not a negotiating text and suggested that it should stimulate members' conversations about including e-commerce provisions in the text of a future Trade in Services Agreement (TISA).
+ 
+WTO members have thus far failed to forge an agreement on common rules regarding the treatment of cross-border data flows.
+ 
+Leaked Proposal
+ 
+The U.S. proposal seeks to prohibit each of the TISA's 24 negotiating parties from forcing companies to maintain a commercial presence within its borders or to adhere to local content requirements as a condition for operating in the country.
+ 
+The proposal also stipulates that a TISA member shall not require technology service suppliers to transfer a particular technology or other proprietary knowledge to a person in its territory or to implement requirements that favor domestic services.
+ 
+Under the U.S. proposal, TISA members could not prevent technology service providers from “transferring, accessing, processing or storing information, including personal information, within or outside the party's territory, where such activity is carried out in connection with the conduct of the service supplier's business.”
+ 
+TISA members also would be prohibited from denying the “legal validity” of electronic signatures under the proposal.
+ 
+General Skepticism
+ 
+China accused the U.S. of imposing barriers to information flows and said that greater efforts need to be taken to balance national security interests with the terms of the proposal.
+ 
+The European Union said that national security should not be used to justify protectionist measures regarding electronic commerce. Members should seek to strike a balance between facilitating digital trade and protection of privacy, the EU said.
+ 
+India and South Africa expressed their general concerns about the inclusion of new services in the negotiations. Brazil said that it would oppose any restrictive language regarding the U.S. e-commerce proposal.
+ 
+The 24 WTO members participating in TISA negotiations collectively represent 70 percent of the world's $44 trillion services marketplace. The participants are: Australia, Canada, Chile, Chinese Taipei, Colombia, Costa Rica, the EU, Hong Kong China, Iceland, Israel, Japan, Korea, Liechtenstein, Mexico, New Zealand, Norway, Pakistan, Panama, Paraguay, Peru, Switzerland, Turkey, the U.S. and Uruguay.
+ 
+ 
+WTO Members to Resume Doha Discussions, Will Examine Dispute Settlement Decisions
+By Bryce Baschuk
+WTO Reporter, March 23, 2015
+ 
+March 20 — World Trade Organization members will resume intensive consultations this week to advance a work program that addresses the remaining issues of the 2001 Doha Round.
+ 
+WTO Director-General Roberto Azevedo will lead a series of discussions to resolve the myriad challenges that have prevented members from modernizing the WTO's multilateral trade rules.
+ 
+Deep disagreements among key members, particularly in the realm of agricultural domestic support, have dogged recent efforts to agree to a detailed work program by July 31.
+ 
+The disagreement between China and the U.S. over agricultural subsidies is a key issue that needs to be resolved if members are to achieve any Doha goals by the Dec. 15–18 ministerial conference in Nairobi, Kenya.
+ 
+Dispute Settlement Inquiries
+ 
+The WTO's Dispute Settlement Body (DSB) will consider granting panel inquiries into U.S. and Russian trade measures at its March 25 meeting.
+ 
+The European Union again asked the settlement body to establish a panel to examine Russian duties on imports of paper, palm oil and refrigerators, according to the agenda of the upcoming meeting.
+ 
+Korea also asked for a panel to study U.S. tariffs on steel products used for oil drilling, known as oil country tubular goods, the agenda said.
+ 
+Though Russia and the U.S. rejected the initial requests for panel consultations at a March 10 special meeting of the DSB, the appointment of a panel may not be rejected a second time (47 WTO, 3/11/15).
+ 
+The DSB also will respond to a pair of joint requests from the EU, Japan and China for a decision regarding Chinese antidumping duties on high-performance stainless steel seamless tubes, according to the meeting agenda.
+ 
+Other Discussions
+ 
+WTO members March 23 will convene for a formal meeting of the development negotiation, while on March 24 the preparatory committee on trade facilitation will hold an informal meeting.
+ 
+WTO members will consider the biennial trade policy review of Pakistan on March 24 and March 26.
+ 
+The Committee on Sanitary and Phytosanitary Measures (SPS) will hold informal meeting March 25, followed by a formal SPS meeting March 26.
+ 
+The Council for Trade in Goods will meet March 26, and there will be a services negotiations meeting that same day. The Trade, Debt and Finance Working Group will meet March 27.
+ 
+ 
+India opposes new US proposals on food stocks 
+D. Ravi Kanth 
+23 March 2015
+Mint
+ 
+Geneva, March 23 -- Recent US proposals aimed at finding a permanent solution to the tussle over public stockholding for food security are inconsistent with what members of the World Trade Organization (WTO) are required to accomplish as part of the so-called Bali mandate, Indian officials said.
+
+At an informal meeting of the Doha agriculture negotiating body at the WTO on Friday, the US presented a restricted document called Proposed Elements for Discussion on Public Stockholding for Food Security. It calls for a review of "existing food security policies, in particular public stockholding for food security programmes".
+
+The US wants members to consider the "efficacy" of public stockholding programmes as food security tools and their effects on trade, including any unintended consequences that may distort trade or adversely impact the food security of other members. Based on the review of the public distribution policies, the US wants members to agree on a "set of best practices for public stockholding policies". Subsequently, a permanent solution will be finalized, the US has argued, in its proposals, reviewed by Mint.
+
+Responding to the US proposals, India maintained that the Bali mandate requires members to finalize "a permanent solution for food security purposes but not on food security policies [of WTO member countries]."
+
+The US proposal to discuss food security policies of other countries was already rejected by trade ministers when they framed the Bali mandate on what needs to be done to find a permanent solution, an Indian official has argued, according to people familiar with the exchange between the US and India at the meeting.
+
+Several nations, such as China, Indonesia and the Philippines, supported India, saying that the Bali mandate requires members to discuss the "conditions" for a permanent solution but not the food security policies of members. "This is a classic tactic of stonewalling by the US to ensure that there is no permanent solution by the end of this year," said a South American agriculture negotiator, requesting anonymity.
+
+The Bali mandate, which was further modified last year after India and the US had reached an understanding, calls on WTO members to negotiate "a permanent solution on the issue of public stockholding for food security purposes" by 31 December. Until conditions for a permanent solution are agreed upon and adopted, members shall not raise trade disputes against nations currently implementing public distribution system (PDS) programmes, according to the revised mandate.
+
+The G-33 coalition led by Indonesia, and which includes China, India, the Philippines and 40 other developing and poor nations, has proposed three alternatives for a permanent solution.
+
+First, adding a new paragraph to the so-called government service programmes in the green box disciplines of the WTO's agreement on agriculture, which are exempted from any subsidy reduction commitments. Second, modifying the existing rules to ensure that the acquisition of food stocks by developing countries to support low-income, resource-poor producers is not required to be calculated under the method used for calculating trade-distorting domestic subsidies. And third, modifying and amending the rules to calculate subsidies based on the so-called external reference period of 1986-88, which was decided during the previous Uruguay round (UR) of trade talks.
+
+The Doha talks were launched in 2001 to reform the rules in the WTO's agriculture agreement negotiated during the UR. The UR rules for agriculture were largely decided by the US and the European Union (EU).
+
+Public stockholding programmes for food security were included in the Doha negotiating mandate for rectifying the UR disciplines. The revised draft 2008 modalities on public stockholding prepared by the former chair for Doha agriculture negotiations, Crawford Falconer of New Zealand, had clearly stipulated "that there is no requirement for difference between the acquisition price and the external reference price to be accounted for in the AMS [aggregate measurement of support or trade-distorting subsidies]."
+
+The EU ruled last week that it will not agree to including PDS programmes in the green box, or to the other alternatives proposed by the G-33, on the grounds that they are not acceptable. The EU wants the G-33 to come with new proposals, but is not willing to discuss what the group had proposed last year. The latest stand-off needs urgent resolution. "The food security issue has come to a flashpoint and needs urgent resolution," the South American official argued.
+
+In an attempt to find a solution on a priority basis, the G-33 has called on the chair for Doha agriculture negotiations, ambassador John Adank, to nominate a "Friend of the Chair" to facilitate negotiations for formulating a "balanced" permanent solution for public stockholding programmes for food security.
+ 
+ 
+Indonesia plans levy of $50/T on crude palm exports instead of tax threshold cut
+By Wilda Asmarini 
+ 
+JAKARTA, March 21 (Reuters) - Indonesia will impose a levy of $50 a tonne on exports of crude palm oil when prices fall below a threshold triggering a monthly tax on shipments overseas, the chief economics minister said.
+
+When prices of crude palm oil fall below the threshold of $750 a tonne on average, the world's top producer of the tropical oil cuts the monthly tax on its CPO exports to zero.
+
+Benchmark Malaysian palm oil futures have fallen more than a fifth over the last year, and ended on Friday at 2,160 ringgit ($579) per tonne.
+
+Southeast Asia's biggest economy set its crude palm oil export tax for March at zero, unchanged since October last year.
+
+Indonesian officials are preparing new rules for a charge of $50 on every tonne of CPO shipped at the zero export tax rate, Sofyan Djalil told reporters, with the funds going to help pay for biodiesel subsidies announced in recent weeks.
+
+"At any (CPO) price we will take $50 a tonne," Sofyan Djalil said late on Friday, making clear that when the CPO export tax kicked in, the government would allocate $50 a tonne to its biodiesel fund from the revenue earned.
+
+The measure will go to Indonesian President Joko Widodo for approval on his March 30 return from overseas trips.
+
+Indonesia ramped up biodiesel subsidies last month, in a bid to protect its biofuels industry against lower prices of crude and cut costly imports of diesel.
+
+But a subsequent decision to boost the minimum bio content in diesel fuel to 15 percent from 10 percent increased the amount of funds needed to pay the subsidies for the higher volumes of biodiesel.
+
+To secure processing supplies, Djalil said the government may also require CPO producers to allocate 15 percent of total output for domestic use, but gave no further details.
+
+A major industry group this week said the government was looking to lower the threshold for the monthly export tax, to between $500 and $600 a tonne.
+
+The CPO export tax, aimed to help processing industries and secure domestic supplies, rises to a maximum of 22.5 percent, depending on how far above $750 average prices climb.
+
+Before the recent changes, Indonesia's CPO production was seen rising 7 percent to 31.5 million tonnes, with exports falling 500,000 tonnes to 19.5 million, industry estimates show.
+
+Major palm oil firms operating in Indonesia include PT Sinar Mas Agro Resources and Technology, Malaysia's Sime Darby and Singapore-based Wilmar International Ltd . (Reporting by Wilda Asmarini; Writing by Michael Taylor; Editing by Clarence Fernandez) 
+ 
+ 
+Local poultry chief says US asking SA to shrink its economy 
+23 March 2015
+The Mercury
+ 
+A PROPOSAL from the US poultry industry aimed at resolving the ongoing impasse over their poultry imports into South Africa is tantamount to asking the country to shrink its economy, according to the South African Poultry Association (Sapa).
+
+Sapa chief executive Kevin Lovell said the industry body would shortly be responding to the latest offer by its US counterpart, the USA Poultry and Egg Export Council (Usapeec), as the two wrestle with how to resolve a trade dispute that threatens to end South Africa's participation in the African Growth and Opportunity Act (Agoa) trade scheme.
+
+Lovell said the industry body would also be repeating its invitation to continue discussions with Usapeec and the National Chicken Council of the US in South Africa.
+
+He dismissed claims that Sapa was holding up efforts to resolve the trade dispute.
+
+"As the duties are lawfully in place the best solution for the dispute is that the two industries find some reasonable compromise," said Lovell. "We have been twice to the USA, they have yet to come here, and it is time for some sunshine discussions."
+
+According to Lovell, the current US offer would remove the equivalent of the third-largest producer from the South African market. "That is both unreasonable and unacceptable," he told Business Report.
+
+Timelines
+
+He said Sapa had tried to get a clear understanding of the timelines involved in order to work within the requisite schedule to try to reach a resolution, but no one had been able to be very specific.
+
+"We have explained to our counterparts that the sooner they can be reasonable the sooner we can agree to a concession for once we have agreed and reduced our agreement to writing we will have to make an application to the International Trade Administration Commission (Itac) to put our agreement into effect," said Lovell.
+
+He said the parties could not privately bypass a lawful trade instrument that was in place and Itac needed to allow interested parties to comment on what the two industries might find acceptable.
+
+"Where the two industries differ widely is that the US industry seems to care little for our market realities," said Lovell, adding that principal among these was that the South African poultry industry could not increase exports to the US because of sanitary and phytosanitary issues, and whose basis, he said, was "spurious".
+
+"So an increase in imports means a reduction in local production," he said, adding that the prime dispute was about an unfair trade corrective instrument - the anti-dumping duty.
+
+"For as long as the Americans dump we will defend our right to be protected from unfair trade.
+
+"We are prepared to be harmed for the greater good of South Africa, but there are limits to the level of harm we can countenance," said Lovell.
+
+"The Americans wish the world to believe that in the process of cutting up a whole chicken the cost (per kg) of some of the parts increase (breast meat) and others decrease (dark meat). That is clearly not logical."
+
+He denied that US poultry imports were shut off from the South Africa market.
+
+"The anti-dumping duties apply to only one tariff line, so the rest of the poultry import market (about 250 000 tons per annum) is freely available to them and the part for which the anti-dumping duties apply (about 150 000 tons) is also available as the principle of an anti-dumping duty is that it is corrective, not punitive, ie it levels the playing field so that the two parties can compete equally and fairly."
+
+Lovell said the US government had not contested the validity of the South African duties at the World Trade Organisation (WTO). The rule of law, he said, allowed that these duties be considered lawful until shown otherwise.
+
+"Their real problem is that the US poultry industry is not a real exporter but rather a surplus disposer - removing surpluses their own people do not want to eat and finding poorer people in the developing world who are attracted to the unnaturally low prices of these products," Lovell said.
+
+He said the US approach thus far was akin to asking South Africa to make a choice "as to how we would like to shrink our economy - chicken or cars".
+
+"Are jobs in agriculture worth less than jobs in the motor industry?" Lovell asked. "One should not forget that we traded with the US before Agoa and we will still be trading with the US after Agoa ends whenever that might be. Since Agoa is a unilateral agreement they can cancel it at any time which is not very good for long-term investment planning," he said. - Ellis Mnyandu
+
+ 
+'Economic emergence': the potential of fair African development 
+Joris FIORITI 
+22 March 2015
+Agence France Presse
+ 
+Across Africa, where many nations show high economic growth rates but with little benefit to their populations, the notion of social and economic "emergence" is taking hold as a remedy for perennial pessimism.
+
+The term has become a buzzword among international donors and African politicians who take it to mean a fairer distribution of wealth and other measures that benefit society at large.
+
+About 30 countries on the continent have signed up to the doctrine, according to the United Nations. Ivory Coast's President Alassane Ouattara, who hosted a regional conference on the theme this week, has grabbed on to the promise of economic emergence as he plans to seek re-election in October.
+
+Emergence, modelled on the success of the "baby tigers" of Asia -- Indonesia, Malaysia and Vietnam -- as well as Brazil, Chile and Colombia in South America, is presented as the opposite of a capitalist and dehumanised economic vision.
+
+"For me, the goal of emergence is not GDP (gross domestic product) growth per se: it is the pursuit of greater human health and happiness so that each one of us can fulfil our potential and participate fully in our societies," said Helen Clark, administrator for the UN Development Programme.
+
+Ivory Coast, the world's leading cocoa producer, barely four years ago came out of a political and military crisis after a bloody decade. It has since achieved an annual growth rate of 9.0 percent and is due to be an "emerging" economy by 2020, Ouattara told the conference, though the Ivorian opposition considers that goal far-fetched.
+
+Leaders elsewhere in Africa are less ambitious but equally determined. Chad was aiming to emerge in 2020 but has revised the date to 2030, like Togo. More cautiously, Senegal's rulers are looking to 2035 to attain key goals.
+
+"In addition to being strong and sustainable, the growth that leads us to emerge should generate jobs, force down unemployment and reduce social inequalities," Senegalese President Macky Sall said during the forum.
+
+The UN's Clark envisaged that "by 2050, an 'emergent Africa' would have tripled Africa's share of global GDP, enabled 1.4 billion Africans to join the middle class, and reduced tenfold the number of people living in extreme poverty. These are exciting prospects."
+
+Investment in health and education and reducing inequalities between cities and the countryside and between men and women, along with diversifying the economy and appropriate infrastructure projects, are among means cited by experts to reach emergent targets.
+
+On a continent where 300 million inhabitants were considered middle-class citizens by the African Development Bank (ADB) in 2011, out of an overall population of around one billion, "Afro-pessimism is now giving way to optimism," Ivory Coast's Planning Minister Albert Toikeusse Mabri asserted.
+
+"The African narrative has changed. Just a while ago, Africa was a place which was exceptional, but for negative reasons. It was a place where there was no growth, no law," said ADB vice-president Steve Kayizzi-Mugerwa.
+
+"People would say, 'Yeah, that's Africa', where there was war, quick death, no accountability," he said, before adding how things have changed.
+
+"We can no longer blame it on geography, we can no longer blame it on disease, we can no longer blame it on the colonial legacy, because many people have emerged," the ADB official said, though conflict rages in Somalia and South Sudan and parts of the Democratic Republic of Congo.
+
+South Africa, Botswana, Mozambique, Kenya and more recently, Ivory Coast, have sparked a more positive outlook on the continent, impressing the financial community with their success in development terms.
+
+"Emergence is a bet on the future," declared UNDP regional director Abdoulaye Mar Dieye.
+
+The ideas discussed at the conference mean that "economic growth without social benefits isn't inevitable", said Makhtar Diop, vice-president of the World Bank for Africa, adding that the "redistribution of wealth" was vital for "social wellbeing".
+
+However, participants pointed out that emergent development is hampered by undue dependence on a single resource, like Nigeria and Angola which rely on their oil exports. Massive corruption and a lack of economic integration are also barriers to success.
+
+Capital flight costs Africa between 60 and 100 billion dollars a year, said Dieye of the UNDP. "With good governance, you see what could be injected back into African economies."
+
+ 
+U.S. proposes cooperation between new China-led bank and Western institutions -WSJ
+ 
+WASHINGTON, March 22 (Reuters) - President Barack Obama's administration is proposing that a new Chinese-led development bank over which Washington has voiced concerns work collaboratively with Western development groups like the World Bank, The Wall Street Journal reported on Sunday.
+
+The United States, worried about China's growing diplomatic clout, has been urging countries to think twice about joining the Asian Infrastructure Investment Bank, or AIIB, considered by some as a challenge to the World Bank and the Manila-based Asian Development Bank.
+
+Despite U.S. misgivings, Britain said earlier this month it would join the AIIB. France, Germany and Italy quickly followed.
+
+Chinese Finance Minister Lou Jiwei said on Sunday that 27 countries had now signed up to participate in the new bank, a $50 billion fund set to begin operations at the end of the year providing project loans to developing countries.
+
+The Journal reported that the U.S. Treasury undersecretary for international affairs, Nathan Sheets, said: "The U.S. would welcome new multilateral institutions that strengthen the international financial architecture."
+
+He told the Journal that co-financing projects with existing institutions like the World Bank or the Asian Development Bank would help ensure the new bank complements rather than competes with existing institutions.
+
+The U.S. Treasury Department had no immediate comment.
+
+World Bank President Jim Yong Kim said in a statement on Sunday that his institution was discussing with the AIIB "how we can closely work together. We have every intention of sharing knowledge and co-investing in projects throughout Asia."
+
+U.S. allies Japan, Australia and South Korea are still absent from the AIIB's list of members.
+
+Leaders of the International Monetary Fund and the Asian Development Bank told a conference in Beijing on Sunday they were in talks with or happy to cooperate with the AIIB. (Reporting by Peter Cooney; Additional reporting by Jason Lange; Editing by Jonathan Oatis and Leslie Adler) 
+ 
+ 
+Singapore patriarch Lee Kuan Yew dies 
+Jeremy Grant in Singapore 
+22 March 2015
+Financial Times (FT.Com)
+ 
+Lee Kuan Yew Lee Kuan Yew, founding father of modern Singapore and one of the most influential global leaders of the 20th century, has died aged 91, half a century after he led the tiny Asian city-state to independence in 1965.
+
+Singapore's first prime minister, Mr Lee ruled the island nation from 1959 for three decades, overseeing its transformation from tropical Southeast Asian backwater in the declining years of British colonial rule, into one of the most remarkable economic success stories of the 20th century.
+
+He combined an authoritarian streak and appetite for social engineering with a determination to cement Singapore's status as the most business-friendly location in the region by eliminating corruption and building a politically neutral jurisdiction based on the British legal system.
+
+That helped propel Singapore from an economically deprived port city of the 1950s with per-capita gross domestic product of just $550 to an Asian financial powerhouse with GDP per capita of $55,000, according to the World Bank.
+
+On the international stage Mr Lee's sharp intellect meant his advice was sought by US presidents from Lyndon B Johnson to Barack Obama, and by European leaders such as Helmut Schmidt, the former West German chancellor with whom he remained close.
+
+He was one of the first to spot the potential of China under Deng Xiaoping, the former Chinese leader whose pro-market reforms unleashed the economic juggernaut that is now the world's largest economy on purchasing parity terms.
+
+But it is as the architect of modern Singapore, an island with a population of a small mainland Chinese city, that he will be remembered. He led Singapore out of a shortlived union with the Malayan Federation in 1965, two years after breaking colonial ties with Britain.
+
+"He will go down in history as the moderniser of Singapore and the leader who pulled it all together," says Michael Barr, associate professor at the School of International Studies at Australia's Flinders University.
+
+Foreign investment has flooded into Singapore, much of it by multinationals such as Procter & Gamble, Caterpillar and Google, seeking to use the city as a regional headquarters for operations in the fast-growing economies of surrounding Southeast Asia and, more recently, the wider Asia region itself.
+
+Singapore is the largest ship-bunkering port in the world, the largest foreign exchange trading centre in Asia and is second only to Hong Kong in terms of wealth management by assets.
+
+The tabular content relating to this article is not available to view. Apologies in advance for the inconvenience caused.
+
+< > The banning of the sale of chewing gum - except for medicinal purposes - was among the more benign examples of a rule that occasionally saw political opposition handled harshly, including the use of financially crippling lawsuits to silence critics.
+
+Mr Lee was often accused by rights groups of restricting civil liberties in Singapore's multiracial society, over which he exerted a distinctive moral authority.
+
+But he justified his decisions in the interest of preserving the prosperity and safety of the majority of Singaporeans. He remained a staunch believer in caning as a punishment, the issue receiving global attention in 1994 when US teenager Michael Fay was caned under vandalism legislation in spite of appeals from then US president Bill Clinton.
+
+One of Mr Lee's last public policy statements came in 2012 when he addressed Singapore's falling birth rate by ordering citizens to "have more babies" - making the top headline in The Straits Times, the main, government-leaning newspaper.
+
+His last major public appearance came in November when, frail due to a neurological condition that hampered his mobility, he received a standing ovation at the 60th anniversary of the founding the People's Action party, which he co-founded in 1954.
+
+Mr Lee's death comes as Singapore is grappling with something of an existential crisis as sharply slower economic growth, a rapidly ageing population and social strains brought about by recent years of foreign worker immigration are posing challenges to the current government, headed by Mr Lee's eldest son Lee Hsien Loong.
+
+Last year the economy - Asia's 10th-largest - grew by only 2.9 per cent, a sharp drop from two decades of average growth of 6 per cent or more. It is forecast to grow by 2.8 per cent this year, down from an earlier estimate of 3.1 per cent, according to a poll of private economists by the Monetary Authority of Singapore this month.
+
+The younger Mr Lee's government has launched generous spending packages designed to bolster social safety nets amid widening social inequality.
+
+The PAP is braced for a tough general election either this year or in 2016 amid increasing support for opposition parties, which recorded their best results at the last poll in 2011.
+END
