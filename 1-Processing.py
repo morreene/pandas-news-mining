@@ -2,6 +2,9 @@ import os
 os.getcwd()
 os.chdir(r"F:\Projects\pandas-news-mining")
 os.chdir(r"C:\Users\yu\Projects\pandas-news-mining-master")
+os.chdir(r"C:\Users\morreene\Projects\pandas-news-mining")
+
+
 
 
 ###################################################################################################
