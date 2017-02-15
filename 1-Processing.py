@@ -40,18 +40,6 @@ def extractor(filename):
     
     # Clean texts
     # Remove bulletes
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'•\t', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'•', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'¡P', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'-', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'·', '')    
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r' +', ' ')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'’s', '')
-    
 #    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\n', '')
 #    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\r', '')
 
@@ -109,7 +97,7 @@ df_title = pd.DataFrame()
 
 # Run extractor on all files under the directory
 # Problematic file will be identified for further investgation: likely to be irregular format
-indir = 'ASCII-2015-2016/'
+indir = 'File-ASCII-2015-2016/'
 for root, dirs, filenames in os.walk(indir):
     for f in filenames:
         try:
