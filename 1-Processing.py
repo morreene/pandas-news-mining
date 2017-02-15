@@ -52,10 +52,20 @@ def extractor(filename):
         if len(match) > 0: df_raw.loc[i, 'Texts'] = df_raw.loc[i, 'Texts'].replace(match[0], '')
         
     # Remove hyperlink
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \"javascript\:void\(0\)\;\"', '')
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \\l \"', '')
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l \"', '')
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l', '')
+    
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK (.*?)\"', ' ')  # HYPERLINK "javascript:void(0)" = HYPERLINK *"
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\"', ' ')       
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\]', ' ')
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\)', ' ')
+
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'javascript(.*?)\"', ' ')
+
+    
+
+#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \"javascript\:void\(0\)\"', '')
+#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \\l \"', '')
+#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l \"', '')
+#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l', '')
 
     df_raw['Texts'] = df_raw['Texts'].str.strip()
     
@@ -139,6 +149,17 @@ df_tocheck_problem = pd.merge(df_tocheck_problem, df_tocheck_count, on='FileName
 
 df_tocheck_files = df_tocheck_problem.groupby('FileName').Count.size().reset_index(name='Count')
 df_tocheck_problem_ncount = pd.merge(df_tocheck_problem,df_tocheck_files[df_tocheck_files['Count']==2],on='FileName')
+
+
+#################################################
+#   checking text
+#################################################
+
+
+df_a = df[df['Content'].str.contains('END ')]
+
+df.to_csv('Check.csv')
+
 #################################################
 #   Add columns: date, agencies and language
 #################################################
