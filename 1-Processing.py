@@ -3,21 +3,18 @@ os.getcwd()
 os.chdir(r"F:\Projects\pandas-news-mining")
 os.chdir(r"C:\Users\yu\Projects\pandas-news-mining-master")
 os.chdir(r"C:\Users\morreene\Projects\pandas-news-mining")
-
-
-
+os.chdir(r"D:\Users\yu\Documents\My Projects\pandas-news-mining-master")
 
 ###################################################################################################
-
 import pandas as pd
 import numpy as np
-#import datefinder
-#import win32com.client
 import codecs
 import re
-#import sqlite3 as db
 import pyodbc
 #import itertools
+#import datefinder
+#import win32com.client
+#import sqlite3 as db
 
 '''######################################################################################
     Extract articles from a TXT file and convert to DF
@@ -34,7 +31,7 @@ import pyodbc
 #################################################
 
 def extractor(filename): 
-#    filename = 'Files2015A/2015-06-06.txt'
+#    filename = 'Files2016ASCII/2016-05-08.txt'
     file = codecs.open(filename, 'r', encoding='ascii', errors='ignore')
     lines = [line.strip() for line in file if line.strip()]
     file.close()
@@ -112,7 +109,7 @@ df_title = pd.DataFrame()
 
 # Run extractor on all files under the directory
 # Problematic file will be identified for further investgation: likely to be irregular format
-indir = 'Files2016ASCII/'
+indir = 'ASCII-2015-2016/'
 for root, dirs, filenames in os.walk(indir):
     for f in filenames:
         try:
@@ -141,23 +138,19 @@ Angry voters were made on factory floors: In 1989, a few months before the Berli
 
 '''
 
-
-
-
-
 # Match title table with all content to identify error docs
 # Correction will be made in the raw txt file. then run this part of the code
 # In the end, df_tocheck_problem should have 0 rows
 
-df_tocheck = pd.merge(df_title[~df_title['Title'].isin(['Headlines:','Details:','Headlines','HEADLINES:',
-                           'TITLES','FULL ARTICLES','HEADLINES:','Details','TRADE NEWS'])], 
+df_tocheck = pd.merge(df_title[~df_title['Title'].isin(['Headlines:','Details:','Headlines','HEADLINES',
+                           'TITLES','FULL ARTICLES','HEADLINES:','Details','TRADE NEWS','Content'])], 
                             df, how='left', on=['Title','FileName'])
 df_tocheck_problem = df_tocheck[df_tocheck['Content'].isnull()]
 df_tocheck_count = df_tocheck.groupby('FileName').size().reset_index(name='Count')
 df_tocheck_problem = pd.merge(df_tocheck_problem, df_tocheck_count, on='FileName')
 
 df_tocheck_files = df_tocheck_problem.groupby('FileName').Count.size().reset_index(name='Count')
-df_tocheck_problem_ncount = pd.merge(df_tocheck_problem,df_tocheck_files[df_tocheck_files['Count']==1],on='FileName')
+df_tocheck_problem_ncount = pd.merge(df_tocheck_problem,df_tocheck_files[df_tocheck_files['Count']==2],on='FileName')
 #################################################
 #   Add columns: date, agencies and language
 #################################################

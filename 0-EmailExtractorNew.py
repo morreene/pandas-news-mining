@@ -23,7 +23,11 @@ from bs4 import BeautifulSoup
 ###################################################################################################'''
 
 outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+# 2016
 folder = outlook.Folders("Dayong.Yu@wto.org").Folders("@ News").Folders("@ News 2016").Folders("tmp")
+# 2015
+folder = outlook.Folders("Dayong.Yu@wto.org").Folders("@ Other").Folders("News").Folders("@ News 2015").Folders("tmp")
+
 
 messages = folder.Items
 print(messages.count)
@@ -42,7 +46,7 @@ for message in messages:
     else:
         filedate = message.subject
     # Save file as ASCII, but have to ignore errors!!
-    text_file = codecs.open('Files2016ASCII/' + str(filedate) +'.txt', 'w', encoding="ascii", errors="ignore")
+    text_file = codecs.open('Files2015ASCII/' + str(filedate) +'.txt', 'w', encoding="ascii", errors="ignore")
 #    text_file = open('Files2016/' + str(filedate) +'.txt', 'w')    
     soup = BeautifulSoup(message.body, "lxml")
     text_file.write(soup.get_text())
