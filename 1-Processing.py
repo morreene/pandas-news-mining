@@ -1,48 +1,45 @@
 import os
 os.getcwd()
-os.chdir(r"F:\Projects\pandas-news-mining")
+os.chdir(r"H:\pandas-news-mining-2017-02-16")
 os.chdir(r"C:\Users\yu\Projects\pandas-news-mining-master")
 os.chdir(r"C:\Users\morreene\Projects\pandas-news-mining")
-os.chdir(r"D:\Users\yu\Documents\My Projects\pandas-news-mining-master")
+os.chdir(r"D:\Users\yu\Documents\My Projects\pandas-news-mining-2017-02-16")
 
 ###################################################################################################
 import pandas as pd
 import numpy as np
 import codecs
 import re
-import pyodbc
+import pyodbc as odbc
 #import itertools
 #import datefinder
 #import win32com.client
 #import sqlite3 as db
 
 '''######################################################################################
-    Extract articles from a TXT file and convert to DF
+    Extract articles from TXT files and put them into a DF
     Extractor read and parse a TXT file.
-    Titles of news are listed on the top of email as an index. Extractor matches 
-        headings in index with each title to identify individual article.
-    There will be some articles having problems to match. Open the TXT file and correct irregular texts. Then run this process again.
-    Progress: data done: 2015,
+    Titles of news are listed on the top of TXT as an index. Extractor matches 
+        headings in index with each title in the body of TXT to identify individual articles.
+    There will be some articles having problems to match. Open the TXT file and correct irregular texts. 
+    Then run this process again.
+    Progress: data done: 2015,2016
 ######################################################################################'''
 
 
 #################################################
-# Extractor - get data from individual txt
+# Extractor - Extract articles from files
 #################################################
 
 def extractor(filename): 
-#    filename = 'Files2016ASCII/2016-05-08.txt'
+#    filename = 'File-ASCII-2015-2016/2016-05-08.txt'
     file = codecs.open(filename, 'r', encoding='ascii', errors='ignore')
     lines = [line.strip() for line in file if line.strip()]
     file.close()
     
     df_raw = pd.DataFrame(lines, columns=['Texts']).reset_index().rename(columns={'index':'ParaID'})
-    
-    # Clean texts
-    # Remove bulletes
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\n', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\r', '')
 
+    # Clean texts
     # Replace double spaces with single
     df_raw['Texts'] = df_raw['Texts'].str.replace(r'  ', ' ')
     
@@ -52,23 +49,15 @@ def extractor(filename):
         if len(match) > 0: df_raw.loc[i, 'Texts'] = df_raw.loc[i, 'Texts'].replace(match[0], '')
         
     # Remove hyperlink
-    
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK (.*?)\"', ' ')  # HYPERLINK "javascript:void(0)" = HYPERLINK *"
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\"', ' ')       
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\]', ' ')
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\)', ' ')
-
-    df_raw['Texts'] = df_raw['Texts'].str.replace(r'javascript(.*?)\"', ' ')
-
-    
-
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \"javascript\:void\(0\)\"', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK \\l \"', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l \"', '')
-#    df_raw['Texts'] = df_raw['Texts'].str.replace(r'\\l', '')
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'HYPERLINK (.*?)\"', ' ')    # HYPERLINK "javascript:void(0)" or HYPERLINK *"
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\"', ' ')         # http*"
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\]', ' ')         # http*]
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'http(\S*?)\)', ' ')         # http*)
+    df_raw['Texts'] = df_raw['Texts'].str.replace(r'javascript(.*?)\"', ' ')    # javascript*"
 
     df_raw['Texts'] = df_raw['Texts'].str.strip()
     
+    # Remove rows based on value of Texts
 #    df_raw.loc[df_raw['Texts'].str.contains('END'), 'ToDelete'] = True
     df_raw.loc[df_raw['Texts'].str.contains('Information and External Relations Division'), 'ToDelete'] = True
     df_raw.loc[df_raw['Texts'].str.contains('Josep Bosch'), 'ToDelete'] = True
@@ -82,17 +71,19 @@ def extractor(filename):
     # Find records the same as titles in headline
     df_raw['TitleFlag'] = df_raw['Texts'].duplicated()
     
-    # First duplication above are titles, sometimes dates or agency are in single line and may be duplicated
+    # Paras above the first duplication are titles
     first_title = df_raw[df_raw['TitleFlag'] == True].iloc[0]['ParaID']
     
-    # Put titles and articles in different DF
+    # Put titles and articles in two seperate dataframes
     df_title = df_raw.iloc[0:first_title][['ParaID', 'Texts']].rename(columns={"Texts": "Title"})
     df_article = df_raw.iloc[first_title:][['ParaID', 'Texts']].rename(columns={"Texts": "Content"})
     
     # Matche titles with ful article
     df = pd.merge(df_article, df_title, how='left', left_on='Content', right_on='Title')
+    
     df = df.fillna(method='ffill')
     df = df.rename(columns={"ParaID_y": "ArticleCode"})
+    df['ArticleCode'] = df['ArticleCode'].astype(int)
     
     # Concatenate contents of article
     df = df[df['Title']!=df['Content']].groupby(['ArticleCode','Title'])['Content'].apply(lambda x: "%s" % ' '.join(x)).reset_index()
@@ -120,7 +111,7 @@ for root, dirs, filenames in os.walk(indir):
             print(f + ' - ' + str(e))
 
 #################################################
-#   Checking the entire DF
+# Check and revice TXT file till all article OK
 #################################################
 
 '''
@@ -152,19 +143,19 @@ df_tocheck_problem_ncount = pd.merge(df_tocheck_problem,df_tocheck_files[df_toch
 
 
 #################################################
-#   checking text
+#   Check specific text strings
 #################################################
 
 
-df_a = df[df['Content'].str.contains('END ')]
+#df_a = df[df['Content'].str.contains('END ')]
 
-df.to_csv('Check.csv')
+#df_b = df.groupby('FileName').size().reset_index(name='Count')
+
+#df.to_csv('Check.csv')
 
 #################################################
-#   Add columns: date, agencies and language
+#   Add columns: date not used
 #################################################
-
-
 
 ## This is module to identified the dates from string
 ## Not used, use file name directly
@@ -182,38 +173,40 @@ df.to_csv('Check.csv')
 #            df3.loc[i, 'Date'] = np.NaN
 #    else:
 #        df3.loc[i, 'Date'] = np.NaN
-   
 
-# Extract agency from article content
-#agencies = ['Interfax','The Hindu','The Western Mail','POLITICO','Financial Times','Taipei Times','Agence Europe',
-#            'Business Line (The Hindu)','Business Standard','MintAsia','Bloomberg Newsweek','Politico',
-#            'The Washington Post','Nikkei Report','Kyodo News','Deutsche Presse-Agentur','Xinhua News Agency',
-#            'New York Times', 'MintAsia',  'The Washington Post', 'Nikkei Report','Kyodo News',
-#            'Deutsche Presse-Agentur', 'Bulletin Quotidien Europe', 'Forbes.com','Reuters News',
-#            'Bloomberg News','South China Morning Post','Investopedia','Sputnik News','BelTA',
-#            'Mint','The Hans India','Agence France Presse','Unian','Taipei Times',
-#            'Inside U.S. Trade','The Baltic Course','ITAR-TASS World Service','All Africa',
-#            'Implications for LDCs','The Financial','All Africa',
-#            'Business Standard','Bulletin Quotidien Europe','Times Of Oman','Business Times Singapore',
-#            'The Hindu','Domain-B','LaPresseAffaires.com','The Times of India','Business Line (The Hindu)',
-#            'India Blooms News Service ','NDTV ','Millennium Post','Sputnik News ','Yale Global Online',
-#            'Mondaq Business Briefing','China.org.cn (China)','Peoples Daily','News International',
-#            ]
-#
-#for agency in agencies:
-#    df3.loc[df3['Content'].str.contains(agency), 'Author'] = agency
 
+#################################################
+#   Add columns: Date from file name
+#################################################
 df = df.reset_index()
-df['Date'] = df['FileName'].str[11:21]
+df['Date'] = df['FileName'].str[21:31]
              
-# Detect languages
+#################################################
+#   Add columns: Language
+#################################################
 import langdetect 
 for i in range(0, len(df)):
-    df.loc[i, 'Language'] = langdetect.detect(df.loc[i, 'Content'][0:200])
+    df.loc[i, 'Language'] = langdetect.detect(df.loc[i, 'Content'][0:300])
     
 # Check items with languages other than EN, FR, ES
-#df4 = df[~df['Language'].isin(['en', 'es','fr'])]
+df4 = df[~df['Language'].isin(['en', 'es','fr'])]
 
+#################################################
+# Add columns: news agencies:   NOT FINISHED
+#################################################
+## Agency names are in MDB, agency_txt is the terms to be matched with content, agency is the standardized 
+#cn_mdb = odbc.connect(r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)}; DBQ=./Reference.accdb;')
+#df_agencies = pd.read_sql("SELECT * FROM [Agencies]", cn_mdb)   
+#cn_mdb.close()
+#
+## convert series to text list for matching
+#agencies = df_agencies['agency_txt'].tolist()
+#
+#for agency in agencies:
+#    df.loc[df['Content'].str.contains(agency), 'Author'] = agency
+#
+#df_a = df[df['Author'].isnull()]
+#df_a.to_csv('dele.csv')
 
 #################################################
 # Prepare the dataframe for analysis
@@ -238,7 +231,6 @@ df4['Text'] = df4['Text'].str.replace('//iconnect\.wto\.org/', '')
 df4['Text'] = df4['Text'].str.replace('-', ' ')
 df4['Text'] = df4['Text'].str.replace('U.S.', 'United States')
 df4['Text'] = df4['Text'].str.replace('US', 'United States')
-
 df4['Text'] = df4['Text'].str.replace('S.Korea', 'South Korea')
 df4['Text'] = df4['Text'].str.replace('S. Korea', 'South Korea')
 df4['Text'] = df4['Text'].str.replace('WTO', 'world trade organization')
@@ -289,8 +281,9 @@ tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'),
                           ('united', 'states'), ('european', 'union'), ('new', 'zealand'),
                           ('per', 'cent'),('south', 'korea'),
                           ])
+
 # Test the tokenizer
-#tokenizer.tokenize('In a little or a little bit world trade organization'.split())
+#tokenizer.tokenize('In a little or a european union little bit world trade organization'.split())
 # Test the function
 #tokenize_and_stem('In World Bank or a_little. bit  _ World Trade Organization. United States')
 
