@@ -214,8 +214,11 @@ df4 = df[~df['Language'].isin(['en', 'es','fr'])]
 #################################################         
 
 # Save and read documents to/from pickle
-#df.to_pickle('df_save.pck')
-df = pd.read_pickle('df_save.pck')
+
+df = df[['Date','ArticleCode','Language','Title','Content']]
+df.to_pickle('df_save.pck')
+
+#df = pd.read_pickle('df_save.pck')
 
 # Only work on English documents
 df4 = df[df['Language'].isin(['en'])].copy()
@@ -258,10 +261,10 @@ from sklearn import feature_extraction
 #import mpld3
 
 # Prepare lists
-lst_texts = df4['Text'].tolist()
-lst_titles = df4['Title'].tolist()
-lst_dates = df4['Date'].tolist()
-lst_articlecodes = df4['ArticleCode'].astype(int).tolist()
+texts = df4['Text'].tolist()
+titles = df4['Title'].tolist()
+dates = df4['Date'].tolist()
+articlecodes = df4['ArticleCode'].astype(int).tolist()
 
     
 # load nltk's English stopwords as variable called 'stopwords'
@@ -284,6 +287,10 @@ tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'),
 
 # Test the tokenizer
 #tokenizer.tokenize('In a little or a european union little bit world trade organization'.split())
+
+
+
+
 # Test the function
 #tokenize_and_stem('In World Bank or a_little. bit  _ World Trade Organization. United States')
 
@@ -297,6 +304,40 @@ tokenizer = MWETokenizer([('world', 'bank'), ('world', 'trade', 'organization'),
 #df['Lemmatized'] = df['StopRemoved'].apply(lambda x: [lemmatizer.lemmatize(y) for y in x])
 
 #import string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Define a tokenizer and stemmer which returns the set of stems in the text that it is passed
 def tokenize_and_stem(text):
@@ -383,7 +424,7 @@ tfidf_vectorizer = TfidfVectorizer(max_df=0.9, max_features=200000,
                                    min_df=0.1, stop_words=my_stop_words, 
                                    use_idf=True, tokenizer=tokenize_and_stem, ngram_range=(1,3))
 
-%time tfidf_matrix = tfidf_vectorizer.fit_transform(lst_texts)
+%time tfidf_matrix = tfidf_vectorizer.fit_transform(texts)
 
 print(tfidf_matrix.shape)
 
@@ -416,8 +457,8 @@ df_tfidf_matrix = pd.DataFrame(tfidf_matrix.toarray())
 # Clustering results to DF
 #################################################
 
-news = {'date': lst_dates,'articlecode': lst_articlecodes,
-        'title': lst_titles,'text': lst_texts,'cluster': clusters}
+news = {'date': dates,'articlecode': articlecodes,
+        'title': titles,'text': texts,'cluster': clusters}
 frame = pd.DataFrame(news, index = [clusters], columns = ['date','articlecode','title','text','cluster'])
 
 frame['cluster'].value_counts()
@@ -491,7 +532,7 @@ def strip_proppers(text):
 from gensim import corpora, models, similarities 
 
 #remove proper names
-%time preprocess = [strip_proppers(doc) for doc in lst_texts]
+%time preprocess = [strip_proppers(doc) for doc in texts]
 
 #tokenize
 %time tokenized_text = [tokenize_and_stem(text) for text in preprocess]
